@@ -1,36 +1,164 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sovereign Intelligence - AI Chat Interface
 
-## Getting Started
+A stunning, production-ready Next.js 15 chat interface for your local Python AI backend. Built with the App Router, TypeScript, Framer Motion, and a premium dark-mode aesthetic.
 
-First, run the development server:
+## 🎨 Features
 
+- **Dual Mode Intelligence**: Seamlessly switch between Text Chat and Image Generation
+- **Typewriter Effect**: Character-by-character streaming animation for AI responses
+- **Rich Markdown Support**: Full markdown rendering with syntax highlighting for code blocks
+- **Glassmorphism UI**: Premium floating input bar with backdrop blur effects
+- **Smooth Animations**: Framer Motion powered transitions throughout
+- **Media Lightbox**: Expandable image viewer with download functionality
+- **Auto-Scroll**: Chat automatically scrolls to show latest messages
+- **Error Handling**: Elegant toast notifications for backend connection issues
+
+## 🚀 Tech Stack
+
+- **Framework**: Next.js 15 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Animations**: Framer Motion
+- **Icons**: Lucide React
+- **Markdown**: react-markdown + rehype-highlight
+- **Notifications**: Sonner
+
+## 📋 Prerequisites
+
+**IMPORTANT**: Next.js 15 requires Node.js **20.9.0 or higher**.
+
+Check your Node version:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+node --version
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+If you need to upgrade:
+- Using [nvm](https://github.com/nvm-sh/nvm):
+  ```bash
+  nvm install 20
+  nvm use 20
+  ```
+- Or download from [nodejs.org](https://nodejs.org/)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The project is already set up at `/Users/vidh/aurelius_backend/aurelius-frontend/`.
 
-## Learn More
+Navigate to the directory and install dependencies (if needed):
+```bash
+cd /Users/vidh/aurelius_backend/aurelius-frontend
+npm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 🎯 Running the Application
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Ensure your Python backend is running** on `http://localhost:8000`
+   - Text endpoint: `POST /chat`
+   - Image endpoint: `POST /image`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. **Start the Next.js dev server**:
+   ```bash
+   npm run dev
+   ```
 
-## Deploy on Vercel
+3. **Open your browser** to [http://localhost:3000](http://localhost:3000)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🔌 Backend Integration
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The app connects to your local Python backend with the following contract:
+
+### Text Chat
+```typescript
+// Request
+POST http://localhost:8000/chat
+{
+  "prompt": "User message here",
+  "model": "superdrew100/llama3-abliterated"
+}
+
+// Response
+{
+  "response": "AI response text"
+}
+```
+
+### Image Generation
+```typescript
+// Request
+POST http://localhost:8000/image
+{
+  "prompt": "Image description"
+}
+
+// Response
+{
+  "image_base64": "base64_encoded_image_data"
+}
+```
+
+## 🎨 Design Philosophy
+
+**Sovereign Intelligence** embodies:
+- Deep blacks (#0a0a0a) for a distraction-free canvas
+- Subtle zinc borders and glassmorphic layers
+- Neon blue/purple accents on interaction only
+- Inter font family for premium typography
+- Minimalist, clean, and production-ready aesthetics
+
+## 📁 Project Structure
+
+```
+aurelius-frontend/
+├── app/
+│   ├── page.tsx              # Main chat interface
+│   ├── layout.tsx            # Root layout with metadata
+│   └── globals.css           # Global styles & design system
+├── components/
+│   ├── chat-message.tsx      # Message bubbles with markdown
+│   ├── streaming-text.tsx    # Typewriter effect component
+│   ├── floating-input.tsx    # Glassmorphic input bar
+│   ├── media-card.tsx        # Image display with lightbox
+│   └── loading-indicator.tsx # Neural processing animation
+└── lib/
+    └── utils.ts              # Backend API + utilities
+```
+
+## 🎮 Usage
+
+### Text Mode
+1. Type your message in the input bar
+2. Press Enter or click Send
+3. Watch the AI response stream in with typewriter effect
+
+### Image Mode
+1. Click the Image icon (purple) or type `/image` followed by your prompt
+2. Submit your description
+3. The generated image appears in a Media Card with expand/download options
+
+### Keyboard Shortcuts
+- `Enter`: Send message
+- `Shift + Enter`: New line in textarea
+
+## 🐛 Troubleshooting
+
+**"Neural Link Offline" error**:
+- Verify your Python backend is running on port 8000
+- Check backend logs for errors
+- Ensure CORS is enabled on your backend
+
+**Port already in use**:
+```bash
+npx kill-port 3000
+npm run dev
+```
+
+**Node version error**:
+- Upgrade to Node.js 20.9.0 or higher (see Prerequisites)
+
+## 📝 License
+
+This project is built with production-ready open source libraries. Customize freely.
+
+---
+
+Built with 🔥 by a Principal Frontend Architect mindset.
