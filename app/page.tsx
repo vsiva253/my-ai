@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useRef, useEffect } from "react";
 import { Toaster, toast } from "sonner";
 import { ChatMessage } from "@/components/chat-message";
@@ -69,18 +68,18 @@ export default function Home() {
   };
 
   return (
-    <div className="h-screen flex flex-col bg-[#0a0a0a] w-full">
+    <div className="h-screen flex flex-col bg-[#050505] w-full">
       <div className="flex-1 overflow-y-auto w-full">
         {messages.length === 0 ? (
           <div className="h-full w-full flex flex-col items-center justify-center px-6">
-            <div className="w-12 h-12 rounded-xl bg-white/[0.12] flex items-center justify-center mb-5">
-              <span className="text-xl font-semibold text-white">A</span>
+            <div className="w-12 h-12 rounded-xl bg-white/[0.08] flex items-center justify-center mb-5">
+              <div className="w-7 h-7 rounded-lg bg-[#1c1c1c] border border-white/10" />
             </div>
-            <h1 className="text-lg font-medium text-white mb-2">
+            <h1 className="text-lg font-medium text-white mb-1.5">
               How can I help you today?
             </h1>
-            <p className="text-sm text-white/70">
-              Chat or switch to Image mode to generate pictures.
+            <p className="text-sm text-white/60">
+              You can ask me anything or switch to image mode.
             </p>
           </div>
         ) : (
@@ -90,14 +89,16 @@ export default function Home() {
                 <ChatMessage key={message.id} message={message} />
               ))}
               {isLoading && (
-                <div className="flex justify-start w-full mb-6">
-                  <div className="flex items-center gap-3 rounded-2xl rounded-bl-md bg-white/[0.06] border border-white/[0.12] px-5 py-4">
+                <div className="flex items-center gap-3 w-full mb-6 mt-2">
+                  <div className="w-9 h-9 rounded-full bg-white/[0.06] border border-white/10 flex items-center justify-center">
+                    <div className="w-5 h-5 rounded-full bg-[#1c1c1c] border border-white/10" />
+                  </div>
+                  <div className="flex items-center gap-3">
                     <div className="flex gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-white/50 animate-bounce" style={{ animationDelay: "0ms" }} />
-                      <span className="w-2 h-2 rounded-full bg-white/50 animate-bounce" style={{ animationDelay: "150ms" }} />
-                      <span className="w-2 h-2 rounded-full bg-white/50 animate-bounce" style={{ animationDelay: "300ms" }} />
+                      <span className="w-1.5 h-1.5 rounded-full bg-white/50 animate-bounce" style={{ animationDelay: "0ms" }} />
+                      <span className="w-1.5 h-1.5 rounded-full bg-white/50 animate-bounce" style={{ animationDelay: "150ms" }} />
+                      <span className="w-1.5 h-1.5 rounded-full bg-white/50 animate-bounce" style={{ animationDelay: "300ms" }} />
                     </div>
-                    <span className="text-sm text-white/70">Thinking...</span>
                   </div>
                 </div>
               )}

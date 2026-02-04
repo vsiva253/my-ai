@@ -1,5 +1,4 @@
 "use client";
-
 import { Send, ImageIcon, MessageCircle } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { ChatMode, ImageModelInfo } from "@/lib/utils";
@@ -57,13 +56,13 @@ export function FloatingInput({
   const canSend = input.trim().length > 0 && !isLoading;
 
   return (
-    <div className="shrink-0 w-full bg-[#0a0a0a] border-t border-white/[0.06]">
-      <div className="w-full max-w-3xl mx-auto px-4 sm:px-6 py-6">
+    <div className="shrink-0 w-full bg-[#050505] border-t border-white/[0.08]">
+      <div className="w-full max-w-3xl mx-auto px-4 sm:px-6 py-5">
         {/* Mode switcher + model selector */}
-        <div className="flex flex-wrap items-center gap-2.5 mb-4">
+        <div className="flex flex-wrap items-center gap-2.5 mb-3.5">
           <div
             role="tablist"
-            className="inline-flex p-0.5 rounded-lg bg-white/[0.08]"
+            className="inline-flex p-0.5 rounded-lg bg-white/[0.05] border border-white/[0.08]"
             aria-label="Input mode"
           >
             <button
@@ -71,8 +70,8 @@ export function FloatingInput({
               role="tab"
               aria-selected={mode === "text"}
               onClick={() => onModeChange("text")}
-              className={`inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-all duration-150 ${mode === "text"
-                ? "bg-white/[0.08] text-white"
+              className={`inline-flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-md text-sm font-medium transition-all duration-150 ${mode === "text"
+                ? "bg-white/[0.06] text-white"
                 : "text-white/40 hover:text-white/70"
                 }`}
             >
@@ -84,8 +83,8 @@ export function FloatingInput({
               role="tab"
               aria-selected={mode === "image"}
               onClick={() => onModeChange("image")}
-              className={`inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-all duration-150 ${mode === "image"
-                ? "bg-white/[0.08] text-white"
+              className={`inline-flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-md text-sm font-medium transition-all duration-150 ${mode === "image"
+                ? "bg-white/[0.06] text-white"
                 : "text-white/40 hover:text-white/70"
                 }`}
             >
@@ -98,7 +97,7 @@ export function FloatingInput({
             <select
               value={currentModel}
               onChange={(e) => onImageModelChange?.(e.target.value)}
-              className="h-9 px-3 py-2 rounded-lg bg-white/[0.08] border border-white/[0.12] text-white/90 text-sm font-medium focus:outline-none focus:border-white/30 transition-colors cursor-pointer"
+              className="h-9 px-3 py-2 rounded-lg bg-white/[0.05] border border-white/[0.08] text-white/90 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all cursor-pointer"
               title="Image model"
             >
               {imageModels.map((m) => (
@@ -113,7 +112,7 @@ export function FloatingInput({
         {/* Input area */}
         <form
           onSubmit={handleSubmit}
-          className={`relative flex items-end w-full rounded-xl bg-white/[0.03] border transition-all duration-200 ${focused ? "border-white/20" : "border-white/[0.08]"
+          className={`relative flex items-end w-full rounded-xl bg-white/[0.04] border transition-all duration-200 ${focused ? "border-white/25" : "border-white/[0.08]"
             }`}
         >
           <textarea
@@ -125,29 +124,29 @@ export function FloatingInput({
             onBlur={() => setFocused(false)}
             placeholder={
               mode === "image"
-                ? "Describe the image you want..."
-                : "Message Aurelius..."
+                ? "Describe the image you want to generate..."
+                : "Ask me anything..."
             }
             disabled={isLoading}
             rows={1}
-            className="w-full min-h-[56px] max-h-[160px] bg-transparent text-white placeholder:text-white/50 resize-none outline-none text-[15px] leading-[1.6] py-4 pl-5 pr-[60px]"
+            className="w-full min-h-[54px] max-h-[160px] bg-transparent text-white placeholder:text-white/40 resize-none outline-none text-[15px] leading-[1.6] py-3.5 pl-4 pr-14"
             aria-label={mode === "image" ? "Image prompt" : "Message"}
           />
           <button
             type="submit"
             disabled={!canSend}
             aria-label="Send"
-            className={`absolute right-2.5 bottom-2.5 flex items-center justify-center w-10 h-10 rounded-lg transition-all duration-200 ${canSend
+            className={`absolute right-3 bottom-[9px] flex items-center justify-center w-9 h-9 rounded-lg transition-all duration-200 ${canSend
               ? "bg-white text-black hover:bg-white/90 active:scale-95"
               : "bg-white/[0.05] text-white/20 cursor-not-allowed"
               }`}
           >
-            <Send className="w-4.5 h-4.5" strokeWidth={2} />
+            <Send className="w-4 h-4" strokeWidth={2.2} />
           </button>
         </form>
 
-        <p className="mt-3 text-[13px] text-white/40 text-center">
-          Enter to send · Shift+Enter for new line
+        <p className="mt-2.5 text-xs text-white/30 text-center">
+          Press Enter to send, Shift+Enter for a new line.
         </p>
       </div>
     </div>

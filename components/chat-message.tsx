@@ -1,5 +1,4 @@
 "use client";
-
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
@@ -7,6 +6,7 @@ import { MediaCard } from "./media-card";
 import { Message } from "@/lib/utils";
 import { memo, useState } from "react";
 import { Copy, Check } from "lucide-react";
+import { ModelBadge } from "./model-badge";
 
 interface ChatMessageProps {
     message: Message;
@@ -25,7 +25,7 @@ export const ChatMessage = memo(function ChatMessage({ message }: ChatMessagePro
     if (isUser) {
         return (
             <div className="flex justify-end w-full mb-8">
-                <div className="max-w-[75%] rounded-2xl rounded-br-md px-6 py-4 bg-blue-600/25 border border-blue-500/40">
+                <div className="max-w-[75%] rounded-2xl px-5 py-3.5 bg-white/[0.03] border border-white/[0.06]">
                     <p className="text-[15px] leading-relaxed text-white whitespace-pre-wrap">{message.content}</p>
                 </div>
             </div>
@@ -33,8 +33,9 @@ export const ChatMessage = memo(function ChatMessage({ message }: ChatMessagePro
     }
 
     return (
-        <div className="flex justify-start w-full mb-8">
-            <div className="max-w-[85%] rounded-2xl rounded-bl-md px-6 py-6 bg-white/[0.06] border border-white/[0.12]">
+        <div className="flex flex-col w-full mb-8">
+            <ModelBadge message={message} />
+            <div className="max-w-full rounded-2xl mt-3">
                 <div className="prose prose-invert max-w-none">
                     <ReactMarkdown
                         remarkPlugins={[remarkGfm]}
